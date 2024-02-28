@@ -1,0 +1,71 @@
+name: CI Build & Test
+
+on:
+  push:
+    branches:
+      - main
+    paths: [ '.github/workflows/**', '**/Makefile', '**/*.c', '**/*.h' ]
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+    paths: [ '**/Makefile', '**/*.c', '**/*.h' ]
+  # for manual triggering
+  workflow_dispatch:
+
+env:
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+
+jobs:
+  ubuntu-latest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone
+        id: checkout
+        uses: actions/checkout@v3
+
+      - name: Dependencies
+        id: depends
+        run: |
+          sudo apt-get update
+          sudo apt-get install build-essential pkg-config wget -y
+
+      - name: Download .bin files
+        run: |
+          mkdir -p models/ &&\
+          wget -O models/stories15M.bin https://huggingface.co/karpathy/tinyllamas/resolve/main/stories15M.bin &&\
+          wget -O models/tokenizer.bin https://github.com/karpathy/llama2.c/raw/master/tokenizer.bin
+
+      - name: Build
+        id: make_build
+        run: |
+          make all
+
+      - name: Test
+        id: make_test
+        run: |
+          make test
+
+  macos-latest:
+    runs-on: macos-latest
+
+    steps:
+      - name: Clone
+        id: checkout
+        uses: actions/checkout@v3
+
+      - name: Dependencies
+        id: depends
+        continue-on-error: true
+        run: |
+          brew update
+          brew install wget
+
+      - name: Build
+        id: make_build
+        run: |
+          make all
+
+      - name: Test
+        id: make_test
+        run: |
+          make test
