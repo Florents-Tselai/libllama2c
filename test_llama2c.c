@@ -117,6 +117,7 @@ void test_api_llama2c_encode() {
         assert_eq(prompt_tokens[i], expected_tokens[i]);
     }
 
+    free(prompt_tokens);
 }
 
 void test_api_llama2c_generate() {
