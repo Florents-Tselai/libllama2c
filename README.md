@@ -1,3 +1,7 @@
+<a href="https://github.com/Florents-Tselai/libllama2c/actions/workflows/build?branch=mainline"><img src="https://github.com/Florents-Tselai/libllama2c/actions/workflows/build.yml/badge.svg"></a>
+<a href="https://opensource.org/licenses/MIT License"><img src="https://img.shields.io/badge/MIT License-blue.svg"></a>
+<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Florents-Tselai/libllama2c">
+
 ## libllama2c
 
 **libllama2c** is a fork of [`karpathy/llama2.c`](https://github.com/karpathy/llama2.c) with the following ~~improvements~~ .
