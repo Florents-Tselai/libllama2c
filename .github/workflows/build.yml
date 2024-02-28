@@ -30,12 +30,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install build-essential pkg-config wget -y
 
-      - name: Download .bin files
-        run: |
-          mkdir -p models/ &&\
-          wget -O models/stories15M.bin https://huggingface.co/karpathy/tinyllamas/resolve/main/stories15M.bin &&\
-          wget -O models/tokenizer.bin https://github.com/karpathy/llama2.c/raw/master/tokenizer.bin
-
       - name: Build
         id: make_build
         run: |
@@ -60,12 +54,6 @@ jobs:
         run: |
           brew update
           brew install wget
-
-      - name: Download .bin files
-        run: |
-          mkdir -p models/ &&\
-          wget -O models/stories15M.bin https://huggingface.co/karpathy/tinyllamas/resolve/main/stories15M.bin &&\
-          wget -O models/tokenizer.bin https://github.com/karpathy/llama2.c/raw/master/tokenizer.bin
 
       - name: Build
         id: make_build
