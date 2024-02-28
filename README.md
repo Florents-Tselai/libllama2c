@@ -89,7 +89,7 @@ int main(int argc, char *argv[]) {
 You can install both the CLI and the library
 
 ```bash
-PREFIX=/urr/local make all install
+PREFIX=/usr/local make all install
 ```
 
 Although personally I prefer:
